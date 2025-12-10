@@ -4,6 +4,13 @@
   <meta charset="UTF-8" />
   <title>Abhishek Kumar | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="canonical" href="https://iamabhishek2014-gif.github.io/abhishek-portfolio/" />
+  <meta name="description" content="Abhishek Kumar — Python developer and IT Infrastructure specialist. Portfolio showcasing projects, skills and contact details." />
+  <meta property="og:title" content="Abhishek Kumar | Portfolio" />
+  <meta property="og:description" content="Practical Python tools, IT infrastructure experience, and small desktop apps. Contact: iamabhishek.2014@gmail.com" />
+  <meta property="og:url" content="https://iamabhishek2014-gif.github.io/abhishek-portfolio/" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#1e40af" />
   <style>
     * {
       box-sizing: border-box;
@@ -357,7 +364,10 @@
   </footer>
 
   <!-- Background Music -->
-  <audio id="bgMusic" autoplay loop>
+  <audio id="bgMusic" autoplay loop muted>
+    <!-- Prefer a local file named 'music.mp3' if present (upload your downloaded track and name it music.mp3) -->
+    <source src="music.mp3" type="audio/mpeg">
+    <!-- Fallback free track if local file isn't provided -->
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_d73096b0da.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
@@ -381,47 +391,80 @@
     }
 
     .music-control:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
       box-shadow: 0 6px 16px rgba(15, 23, 42, 0.4);
     }
 
-    .music-control.playing::before {
-      content: "🎵 ";
-    }
-
-    .music-control.paused::before {
-      content: "🔇 ";
-    }
+    .music-control.playing::before { content: "🎵 "; }
+    .music-control.paused::before  { content: "🔇 "; }
   </style>
 
-  <button class="music-control playing" id="musicBtn" title="Click to mute/unmute music">Music On</button>
+  <!-- start muted to satisfy browser autoplay policies -->
+  <button class="music-control paused" id="musicBtn" aria-pressed="false" title="Click to play/pause music">Music Off</button>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Music control
     const bgMusic = document.getElementById("bgMusic");
     const musicBtn = document.getElementById("musicBtn");
-    let isPlaying = true;
+    // Start muted; autoplay of muted audio is allowed on most browsers
+    bgMusic.muted = true;
+    bgMusic.volume = 0.3;
+    let isPlaying = false; // audio is muted/paused initially
 
-    musicBtn.addEventListener("click", function() {
-      if (isPlaying) {
-        bgMusic.pause();
-        musicBtn.textContent = "Music Off";
-        musicBtn.classList.remove("playing");
-        musicBtn.classList.add("paused");
-        isPlaying = false;
-      } else {
-        bgMusic.play();
+    // try to play muted audio (should be allowed)
+    bgMusic.play().catch(() => { /* ignored */ });
+
+    function setButtonState(playing) {
+      if (playing) {
         musicBtn.textContent = "Music On";
-        musicBtn.classList.remove("paused");
-        musicBtn.classList.add("playing");
-        isPlaying = true;
+        musicBtn.classList.remove('paused');
+        musicBtn.classList.add('playing');
+        musicBtn.setAttribute('aria-pressed','true');
+      } else {
+        musicBtn.textContent = "Music Off";
+        musicBtn.classList.remove('playing');
+        musicBtn.classList.add('paused');
+        musicBtn.setAttribute('aria-pressed','false');
       }
+    }
+
+    musicBtn.addEventListener('click', function() {
+      if (!isPlaying) {
+        // unmute and ensure playback
+        bgMusic.muted = false;
+        bgMusic.play().catch(() => {});
+        isPlaying = true;
+      } else {
+        // mute (or pause) the music
+        bgMusic.muted = true;
+        isPlaying = false;
+      }
+      setButtonState(isPlaying);
     });
 
-    // Set volume to 30% for a subtle background effect
-    bgMusic.volume = 0.3;
+    // initialize button label
+    setButtonState(isPlaying);
+
+    // Some browsers (Chrome) require a user gesture to allow audio. Listen for
+    // the first user gesture anywhere on the page and try to unmute/play.
+    function tryResumeOnGesture(e) {
+      if (!isPlaying) {
+        bgMusic.muted = false;
+        bgMusic.play().then(() => {
+          isPlaying = true;
+          setButtonState(isPlaying);
+        }).catch(() => {
+          // still blocked; leave muted and wait for explicit button click
+        });
+      }
+      // remove the listeners after the first gesture
+      document.removeEventListener('click', tryResumeOnGesture, true);
+      document.removeEventListener('keydown', tryResumeOnGesture, true);
+    }
+
+    document.addEventListener('click', tryResumeOnGesture, true);
+    document.addEventListener('keydown', tryResumeOnGesture, true);
   </script>
 </body>
 </html>
