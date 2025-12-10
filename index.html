@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Abhishek Kumar | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #f3f4f6;
+      color: #111827;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1d4ed8, #1e40af);
+      color: white;
+      padding: 2rem 0 2.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.35);
+    }
+
+    header .inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .profile-pic {
+      flex: 0 0 130px;
+      width: 130px;
+      height: 130px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 3px solid #bfdbfe;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.6);
+      background: white;
+    }
+
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .headline {
+      flex: 1;
+      min-width: 230px;
+    }
+
+    .headline h1 {
+      font-size: 1.9rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .headline h2 {
+      font-size: 1.05rem;
+      font-weight: 500;
+      opacity: 0.95;
+      margin-bottom: 0.6rem;
+    }
+
+    .headline .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.3rem;
+    }
+
+    .tag {
+      background: rgba(15, 23, 42, 0.25);
+      border-radius: 999px;
+      padding: 0.18rem 0.7rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .contact-line {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      opacity: 0.95;
+    }
+
+    main {
+      margin-bottom: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 2fr 1.2fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 800px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      header .inner {
+        text-align: center;
+        justify-content: center;
+      }
+
+      .profile-pic {
+        margin: 0 auto;
+      }
+    }
+
+    section {
+      background: white;
+      border-radius: 0.9rem;
+      padding: 1.2rem 1.3rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    }
+
+    section h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+      color: #1f2937;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin-bottom: 0.6rem;
+    }
+
+    .about-text {
+      font-size: 0.94rem;
+      color: #374151;
+    }
+
+    .skills-list,
+    .small-list {
+      list-style: none;
+      margin-top: 0.4rem;
+    }
+
+    .skills-list li {
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+    }
+
+    .skills-category {
+      font-weight: 600;
+      margin-top: 0.4rem;
+      margin-bottom: 0.15rem;
+      color: #111827;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+    }
+
+    .badge {
+      font-size: 0.78rem;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 999px;
+      padding: 0.18rem 0.7rem;
+      color: #1d4ed8;
+      white-space: nowrap;
+    }
+
+    .project {
+      margin-bottom: 0.8rem;
+    }
+
+    .project-title {
+      font-weight: 600;
+      font-size: 0.96rem;
+      color: #111827;
+    }
+
+    .project-role {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-bottom: 0.15rem;
+    }
+
+    .project p {
+      font-size: 0.9rem;
+      color: #374151;
+    }
+
+    .contact-box {
+      font-size: 0.92rem;
+    }
+
+    .contact-box p {
+      margin-bottom: 0.3rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 0.8rem;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container inner">
+      <div class="profile-pic">
+        <!-- Put your own photo as profile.jpg in same folder -->
+        <img src="profile.jpg" alt="Abhishek Kumar photo">
+      </div>
+      <div class="headline">
+        <h1>Abhishek Kumar</h1>
+        <h2>Python Developer (Beginner) &amp; IT Infrastructure / Networking Specialist</h2>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Tkinter GUI</span>
+          <span class="tag">Automation</span>
+          <span class="tag">Servers &amp; Networking</span>
+        </div>
+        <p class="contact-line">
+          📍 India &nbsp;&nbsp;|&nbsp;&nbsp;
+          📧 <a href="mailto:iamabhishek.2014@gmail.com">iamabhishek.2014@gmail.com</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+          🔗 <a href="https://github.com/iamabhishek2014-gif" target="_blank">GitHub</a>
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+      <!-- LEFT COLUMN -->
+      <div>
+        <section id="about">
+          <h3>About Me</h3>
+          <p class="about-text">
+            I am an IT Infrastructure &amp; Network Specialist with over 10 years of experience in servers,
+            networking, CCTV, telemedicine systems and field IT operations. I am now transitioning into
+            Python development, focusing on building practical tools such as billing software, automation
+            scripts and desktop applications using Tkinter.
+            <br><br>
+            My strength is understanding real-world operational problems and converting them into simple,
+            reliable software solutions that support day-to-day work in clinics, offices and field projects.
+          </p>
+        </section>
+
+        <section id="projects">
+          <h3>Highlighted Projects</h3>
+          <p class="section-subtitle">Small but real, practical tools built using Python.</p>
+
+          <div class="project">
+            <div class="project-title">Billing Software (Desktop GUI)</div>
+            <div class="project-role">Python, Tkinter</div>
+            <p>
+              A Windows desktop billing application with item list, GST &amp; discount,
+              customer details, bill preview and text invoice export. Designed to be converted
+              into an executable (.exe) for real-time use in small shops or clinics.
+            </p>
+          </div>
+
+          <div class="project">
+            <div class="project-title">Quiz Application</div>
+            <div class="project-role">Python (Console &amp; GUI)</div>
+            <p>
+              A multiple-choice quiz engine that manages questions, options and scoring.
+              Useful as a learning project to practice loops, dictionaries and input handling.
+            </p>
+          </div>
+
+          <div class="project">
+            <div class="project-title">Utility &amp; Automation Scripts</div>
+            <div class="project-role">Python Scripting</div>
+            <p>
+              Small scripts for calculations, BMI checking and text/file handling that simplify
+              routine tasks and demonstrate how Python can support daily IT and operations work.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div>
+        <section id="skills">
+          <h3>Technical Skillset</h3>
+
+          <div class="skills-category">Python &amp; Development</div>
+          <ul class="skills-list">
+            <li>Core Python: data types, loops, functions, file handling</li>
+            <li>GUI development with Tkinter (forms, tables, bill preview)</li>
+            <li>Automation scripts for basic IT and data tasks</li>
+            <li>Beginner use of Git &amp; GitHub</li>
+            <li>Development using VS Code, Jupyter, Google Colab</li>
+          </ul>
+
+          <div class="skills-category">IT Infrastructure &amp; Networking</div>
+          <ul class="skills-list">
+            <li>Windows Server: AD, DNS, DHCP, Group Policy</li>
+            <li>LAN/WAN setup, routers, switches, basic firewall concepts</li>
+            <li>CCTV, DVR/NVR installation and troubleshooting</li>
+            <li>Telemedicine device deployment and support</li>
+            <li>OFC (Optical Fiber Cable) maintenance &amp; link testing</li>
+            <li>Windows / basic Linux system administration</li>
+          </ul>
+
+          <div class="skills-category">Tools &amp; Platforms</div>
+          <div class="badge-row">
+            <span class="badge">Python</span>
+            <span class="badge">Tkinter</span>
+            <span class="badge">VS Code</span>
+            <span class="badge">Google Colab</span>
+            <span class="badge">Windows Server</span>
+            <span class="badge">VMware / Hyper-V</span>
+          </div>
+        </section>
+
+        <section id="contact">
+          <h3>Contact</h3>
+          <div class="contact-box">
+            <p>If you'd like to collaborate on Python tools, automation for IT operations, or
+            small billing / desktop apps, feel free to reach out.</p>
+            <p><strong>Email:</strong> <a href="mailto:iamabhishek.2014@gmail.com">iamabhishek.2014@gmail.com</a></p>
+            <p><strong>Phone:</strong> +91-7004179729</p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/iamabhishek2014-gif" target="_blank">github.com/iamabhishek2014-gif</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/abhishekgenai2315/" target="_blank">linkedin.com/in/abhishekgenai2315</a></p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Abhishek Kumar · Portfolio
+  </footer>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_d73096b0da.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Music Control Button -->
+  <style>
+    .music-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: linear-gradient(135deg, #1d4ed8, #1e40af);
+      border: none;
+      color: white;
+      padding: 12px 16px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 14px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .music-control:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.4);
+    }
+
+    .music-control.playing::before {
+      content: "🎵 ";
+    }
+
+    .music-control.paused::before {
+      content: "🔇 ";
+    }
+  </style>
+
+  <button class="music-control playing" id="musicBtn" title="Click to mute/unmute music">Music On</button>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Music control
+    const bgMusic = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicBtn");
+    let isPlaying = true;
+
+    musicBtn.addEventListener("click", function() {
+      if (isPlaying) {
+        bgMusic.pause();
+        musicBtn.textContent = "Music Off";
+        musicBtn.classList.remove("playing");
+        musicBtn.classList.add("paused");
+        isPlaying = false;
+      } else {
+        bgMusic.play();
+        musicBtn.textContent = "Music On";
+        musicBtn.classList.remove("paused");
+        musicBtn.classList.add("playing");
+        isPlaying = true;
+      }
+    });
+
+    // Set volume to 30% for a subtle background effect
+    bgMusic.volume = 0.3;
+  </script>
+</body>
+</html>
